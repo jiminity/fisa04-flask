@@ -1,0 +1,6 @@
+myproject/
+migrations/
+# 어느 디렉토리 밑에 있건 
+**/__pycache__/
+
+.env
