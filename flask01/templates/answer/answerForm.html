@@ -4,19 +4,8 @@
   <h5 class="my-3 border-bottom pb-2">답변 올리기</h5>
   {# 수정 #} {# 작성 #}
   <form class="my-3">
-    {% if form.errors %}
-    <div class="alert alert-danger" role="alert">
-      {% for field, errors in form.errors.items() %}
-      <strong>{{ form[field].label }}</strong>
-      <ul>
-        {% for error in errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-      {% endfor %}
-    </div>
-    {% endif %} {{ form.csrf_token }} {{ form.content.label }} {{
-    form.content(class="form-control") }}
+    {% include "form_errors.html" %} {{ form.csrf_token }} {{ form.content.label
+    }} {{ form.content(class="form-control") }}
 
     <button type="submit" class="btn btn-primary">저장</button>
   </form>
