@@ -5,7 +5,9 @@
 검사 #}
 
 <div class="container my-3">
+  {% if g.user %}
   <a href="{{ url_for('board.create') }}" class="btn btn-primary">질문 등록</a>
+  {% endif %}
   <table class="table">
     <thead>
       <tr class="table-dark">

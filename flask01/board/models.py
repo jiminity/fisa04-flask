@@ -1,4 +1,5 @@
 from app import db
+from sqlalchemy import text
 
 # db.Model을 상속받은 테이블을 만듭니다.
 class Question(db.Model):
@@ -7,7 +8,8 @@ class Question(db.Model):
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
     # user테이블 pk로 작성자를 구분
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'), nullable=True)
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'), nullable=True, server_default="1")
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=True, default=1, server_default=text("1"))
     user = db.relationship('User', backref=db.backref('question_set'))
 
 class Answer(db.Model):
@@ -17,7 +19,7 @@ class Answer(db.Model):
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
     # 작성자를 넣을것
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=True, server_default="1")
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=True, server_default=text("1"))
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('answer_set'))  # user를 통해 answer_set 
 

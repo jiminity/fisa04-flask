@@ -20,15 +20,26 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('board.list')}}">QnA</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#three">Technical Editor</a>
-          </li>
           <!-- 네비게이션바 -->
+          <!-- {# 로그인을 하지 않은 사용자에게 #} -->
+          {% if not g.user %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('auth.signup') }}"
               >회원 가입</a
             >
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.login') }}">로그인</a>
+          </li>
+          <!-- {# 로그인을 한 사용자에게는 #} -->
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">로그아웃</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{ g.user.email }}</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
