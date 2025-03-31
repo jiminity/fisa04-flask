@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 import config
+
 # flask db init
 # flask db migrate
 # flask db upgrade 
@@ -38,9 +39,12 @@ def create_app():
     app.jinja_env.filters['date_time2'] = format_datetime2
 
     from board.views import main_views, board_views, answer_views, auth_views
+    from ml_model import ml_views
+
     app.register_blueprint(main_views.mbp)
     app.register_blueprint(board_views.cbp)
     app.register_blueprint(answer_views.abp)
     app.register_blueprint(auth_views.auth)
+    app.register_blueprint(ml_views.mlbp)
 
     return app

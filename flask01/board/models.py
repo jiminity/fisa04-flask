@@ -1,6 +1,7 @@
 from app import db
 from sqlalchemy import text
 
+
 # db.Model을 상속받은 테이블을 만듭니다.
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,4 +29,3 @@ class User(db.Model):
     username = db.Column(db.String(8), nullable=False, unique=True)
     password = db.Column(db.String(25), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-
